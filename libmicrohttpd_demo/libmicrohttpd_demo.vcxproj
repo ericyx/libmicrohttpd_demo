@@ -64,11 +64,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="fileserver_example.c" />
+    <ClInclude Include="..\include\MHD_config.h" />
+    <ClInclude Include="..\include\microhttpd.h" />
+    <ClInclude Include="..\include\platform.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="MHD_config.h" />
-    <ClInclude Include="platform.h" />
+    <ClCompile Include="fileserver_example.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
