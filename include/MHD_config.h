@@ -4,10 +4,10 @@
 /* *** Basic OS/compiler information *** */
 
 /* This is a Windows system */
-#define WINDOWS 1
+#define WINDOWS 0
 
 /* Define if MS VC compiler is used */
-#define MSVC 1
+#define MSVC 0
 
 /* *** MHD configuration *** */
 /* Undef to disable feature */
@@ -25,7 +25,7 @@
 #define HAVE_MESSAGES 1
 
 /* Disable HTTPS support */
-#define HTTPS_SUPPORT 0
+#define HTTPS_SUPPORT 1
 
 
 /* *** OS features *** */
@@ -53,10 +53,10 @@
 #define EPOLL_SUPPORT 0
 
 /* Define to 1 if you have the <winsock2.h> header file. */
-#define HAVE_WINSOCK2_H 1
+#define HAVE_WINSOCK2_H 0
 
 /* Define to 1 if you have the <ws2tcpip.h> header file. */
-#define HAVE_WS2TCPIP_H 1
+#define HAVE_WS2TCPIP_H 0
 
 /* Define to 1 if you have the declaration of `SOCK_NONBLOCK', and to 0 if you
    don't. */
@@ -96,7 +96,7 @@
 #define HAVE_MEMORY_H 1
 
 /* Define to 1 if you have the <pthread.h> header file. */
-#define HAVE_PTHREAD_H 0
+#define HAVE_PTHREAD_H 1
 
 /* Define to 1 if you have the <stdint.h> header file. */
 #define HAVE_STDINT_H 1

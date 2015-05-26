@@ -34,7 +34,7 @@
 #ifndef MHD_PLATFORM_H
 #define MHD_PLATFORM_H
 
-#include "MHD_config.h"
+#include <MHD_config.h>
 
 #ifndef BUILDING_MHD_LIB
 #ifdef _MHD_EXTERN
