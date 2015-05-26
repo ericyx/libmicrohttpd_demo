@@ -1,0 +1,14 @@
+cmake_minimum_required(VERSION 2.8)
+PROJECT(libmicrohttpd_demo)
+
+ADD_EXECUTABLE(fileserver_example fileserver_example.c)
+
+
+FIND_PACKAGE(MICROHTTPD)
+IF(MICROHTTPD_FOUND)
+INCLUDE_DIRECTORIES(${MICROHTTPD_INCLUDE_DIR})
+TARGET_LINK_LIBRARIES(fileserver_example ${MICROHTTPD_LIBRARY})
+ELSE(MICROHTTPD_FOUND)
+MESSAGE(FATAL_ERROR ”microhttpd library not found”)
+ENDIF(MICROHTTPD_FOUND)
+
