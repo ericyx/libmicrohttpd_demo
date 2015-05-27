@@ -56,38 +56,38 @@ CMAKE_SOURCE_DIR = /root/gitfile/libmicrohttpd_demo/libmicrohttpd_demo
 CMAKE_BINARY_DIR = /root/gitfile/libmicrohttpd_demo/libmicrohttpd_demo/build
 
 #=============================================================================
-# Target rules for target CMakeFiles/fileserver_example.dir
+# Target rules for target CMakeFiles/main.dir
 
 # All Build rule for target.
-CMakeFiles/fileserver_example.dir/all:
-	$(MAKE) -f CMakeFiles/fileserver_example.dir/build.make CMakeFiles/fileserver_example.dir/depend
-	$(MAKE) -f CMakeFiles/fileserver_example.dir/build.make CMakeFiles/fileserver_example.dir/build
+CMakeFiles/main.dir/all:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/depend
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/build
 	$(CMAKE_COMMAND) -E cmake_progress_report /root/gitfile/libmicrohttpd_demo/libmicrohttpd_demo/build/CMakeFiles  1
-	@echo "Built target fileserver_example"
-.PHONY : CMakeFiles/fileserver_example.dir/all
+	@echo "Built target main"
+.PHONY : CMakeFiles/main.dir/all
 
 # Include target in all.
-all: CMakeFiles/fileserver_example.dir/all
+all: CMakeFiles/main.dir/all
 .PHONY : all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/fileserver_example.dir/rule: cmake_check_build_system
+CMakeFiles/main.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /root/gitfile/libmicrohttpd_demo/libmicrohttpd_demo/build/CMakeFiles 1
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/fileserver_example.dir/all
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/main.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /root/gitfile/libmicrohttpd_demo/libmicrohttpd_demo/build/CMakeFiles 0
-.PHONY : CMakeFiles/fileserver_example.dir/rule
+.PHONY : CMakeFiles/main.dir/rule
 
 # Convenience name for target.
-fileserver_example: CMakeFiles/fileserver_example.dir/rule
-.PHONY : fileserver_example
+main: CMakeFiles/main.dir/rule
+.PHONY : main
 
 # clean rule for target.
-CMakeFiles/fileserver_example.dir/clean:
-	$(MAKE) -f CMakeFiles/fileserver_example.dir/build.make CMakeFiles/fileserver_example.dir/clean
-.PHONY : CMakeFiles/fileserver_example.dir/clean
+CMakeFiles/main.dir/clean:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/clean
+.PHONY : CMakeFiles/main.dir/clean
 
 # clean rule for target.
-clean: CMakeFiles/fileserver_example.dir/clean
+clean: CMakeFiles/main.dir/clean
 .PHONY : clean
 
 #=============================================================================

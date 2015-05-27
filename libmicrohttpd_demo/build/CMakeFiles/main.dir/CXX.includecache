@@ -1,0 +1,16 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/root/gitfile/libmicrohttpd_demo/libmicrohttpd_demo/main.cpp
+iostream
+-
+thread
+-
+fileserver_example.h
+-
+

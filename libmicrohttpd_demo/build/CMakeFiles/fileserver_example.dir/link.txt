@@ -1,1 +1,0 @@
-/usr/bin/cc      CMakeFiles/fileserver_example.dir/fileserver_example.c.o  -o fileserver_example -rdynamic /usr/local/lib/libmicrohttpd.so -Wl,-rpath,/usr/local/lib 

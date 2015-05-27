@@ -102,41 +102,41 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named fileserver_example
+# Target rules for targets named main
 
 # Build rule for target.
-fileserver_example: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 fileserver_example
-.PHONY : fileserver_example
+main: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 main
+.PHONY : main
 
 # fast build rule for target.
-fileserver_example/fast:
-	$(MAKE) -f CMakeFiles/fileserver_example.dir/build.make CMakeFiles/fileserver_example.dir/build
-.PHONY : fileserver_example/fast
+main/fast:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/build
+.PHONY : main/fast
 
-fileserver_example.o: fileserver_example.c.o
-.PHONY : fileserver_example.o
+main.o: main.cpp.o
+.PHONY : main.o
 
 # target to build an object file
-fileserver_example.c.o:
-	$(MAKE) -f CMakeFiles/fileserver_example.dir/build.make CMakeFiles/fileserver_example.dir/fileserver_example.c.o
-.PHONY : fileserver_example.c.o
+main.cpp.o:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/main.cpp.o
+.PHONY : main.cpp.o
 
-fileserver_example.i: fileserver_example.c.i
-.PHONY : fileserver_example.i
+main.i: main.cpp.i
+.PHONY : main.i
 
 # target to preprocess a source file
-fileserver_example.c.i:
-	$(MAKE) -f CMakeFiles/fileserver_example.dir/build.make CMakeFiles/fileserver_example.dir/fileserver_example.c.i
-.PHONY : fileserver_example.c.i
+main.cpp.i:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/main.cpp.i
+.PHONY : main.cpp.i
 
-fileserver_example.s: fileserver_example.c.s
-.PHONY : fileserver_example.s
+main.s: main.cpp.s
+.PHONY : main.s
 
 # target to generate assembly for a file
-fileserver_example.c.s:
-	$(MAKE) -f CMakeFiles/fileserver_example.dir/build.make CMakeFiles/fileserver_example.dir/fileserver_example.c.s
-.PHONY : fileserver_example.c.s
+main.cpp.s:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/main.cpp.s
+.PHONY : main.cpp.s
 
 # Help Target
 help:
@@ -145,11 +145,11 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... edit_cache"
-	@echo "... fileserver_example"
+	@echo "... main"
 	@echo "... rebuild_cache"
-	@echo "... fileserver_example.o"
-	@echo "... fileserver_example.i"
-	@echo "... fileserver_example.s"
+	@echo "... main.o"
+	@echo "... main.i"
+	@echo "... main.s"
 .PHONY : help
 
 

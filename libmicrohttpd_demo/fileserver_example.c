@@ -1,33 +1,4 @@
-/*
-     This file is part of libmicrohttpd
-     Copyright (C) 2007 Christian Grothoff (and other contributing authors)
-
-     This library is free software; you can redistribute it and/or
-     modify it under the terms of the GNU Lesser General Public
-     License as published by the Free Software Foundation; either
-     version 2.1 of the License, or (at your option) any later version.
-
-     This library is distributed in the hope that it will be useful,
-     but WITHOUT ANY WARRANTY; without even the implied warranty of
-     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-     Lesser General Public License for more details.
-
-     You should have received a copy of the GNU Lesser General Public
-     License along with this library; if not, write to the Free Software
-     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
-*/
-
-/**
- * @file fileserver_example.c
- * @brief minimal example for how to use libmicrohttpd to serve files
- * @author Christian Grothoff
- */
-
-#include <platform.h>
-#include <unistd.h>
-#include <microhttpd.h>
-
-#define PAGE "<html><head><title>File not found</title></head><body>File not found</body></html>"
+#include <fileserver_example.h>
 
 static ssize_t
 file_reader (void *cls, uint64_t pos, char *buf, size_t max)
@@ -98,22 +69,12 @@ ahc_echo (void *cls,
   return ret;
 }
 
-int
-main (int argc, char *const *argv)
+int fileserver(int port)
 {
   struct MHD_Daemon *d;
 
-  if (argc != 2)
-    {
-      printf ("%s PORT\n", argv[0]);
-      return 1;
-    }
   d = MHD_start_daemon (MHD_USE_THREAD_PER_CONNECTION | MHD_USE_DEBUG,
-                        atoi (argv[1]),
+                        port,
                         NULL, NULL, &ahc_echo, PAGE, MHD_OPTION_END);
-  if (d == NULL)
-    return 1;
-  (void) getc (stdin);
-  MHD_stop_daemon (d);
-  return 0;
+  while(1);
 }

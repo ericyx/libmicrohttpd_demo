@@ -1,0 +1,9 @@
+cmake_minimum_required(VERSION 2.8)
+PROJECT(libmicrohttpd_demo)
+
+include_directories(/usr/include)
+include_directories(/usr/local/include)
+
+add_library(fileserver_example SHARED fileserver_example.c)
+
+target_link_libraries(fileserver_example /usr/local/lib/libmicrohttpd.so)
