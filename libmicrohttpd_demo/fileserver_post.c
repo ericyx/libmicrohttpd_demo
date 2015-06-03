@@ -1,9 +1,7 @@
-//demo curl -d 'json={"instances":2,"profile":"OSD"}' localhost:7777
-
 #include "fileserver_example.h"
-#include <cJSON.h>
+
 #define POSTBUFFERSIZE  512
-#define MAXNAMESIZE     512
+#define MAXNAMESIZE     20
 #define MAXANSWERSIZE   512
 #define GET             0
 #define POST            1
@@ -14,7 +12,6 @@ struct connection_info_struct
 	struct MHD_PostProcessor *postprocessor;
 };
 
-
 static int
 iterate_post(void *coninfo_cls, enum MHD_ValueKind kind, const char *key,
 const char *filename, const char *content_type,
@@ -23,7 +20,7 @@ size_t size)
 {
 	struct connection_info_struct *con_info = coninfo_cls;
 
-	if (0 == strcmp(key, "json"))
+	if (0 == strcmp(key, "name"))
 	{
 		if ((size > 0) && (size <= MAXNAMESIZE))
 		{
@@ -31,21 +28,9 @@ size_t size)
 			answerstring = malloc(MAXANSWERSIZE);
 			if (!answerstring)
 				return MHD_NO;
-			
-/************************/
-			int value_int;
-			char *value_string;
-			cJSON *json;
-			json=cJSON_Parse(data);
-			value_int=cJSON_GetObjectItem(json,"instances")->valueint;
-			value_string=cJSON_GetObjectItem(json,"profile")->valuestring;
-
 			const char *greetingpage =
-				"Welcome, %s,%s,%d,%s!\n";
-				//"Welcome, %s,%s!\n";
-
-			snprintf(answerstring, MAXANSWERSIZE, greetingpage, key, data, value_int, value_string);
-			//snprintf(answerstring, MAXANSWERSIZE, greetingpage, key, data);
+				"Welcome, %s!";
+			snprintf(answerstring, MAXANSWERSIZE, greetingpage, data);
 			con_info->answerstring = answerstring;
 		}
 		else
