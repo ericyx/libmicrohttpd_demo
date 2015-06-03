@@ -2,9 +2,9 @@
 
 #include "fileserver_example.h"
 #include <cJSON.h>
-#define POSTBUFFERSIZE  512
-#define MAXNAMESIZE     512
-#define MAXANSWERSIZE   512
+#define POSTBUFFERSIZE  1512
+#define MAXNAMESIZE     1512
+#define MAXANSWERSIZE   1512
 #define GET             0
 #define POST            1
 struct connection_info_struct
@@ -23,7 +23,7 @@ size_t size)
 {
 	struct connection_info_struct *con_info = coninfo_cls;
 
-	if (0 == strcmp(key, "json"))
+	if (1/*0 == strcmp(key, "json")*/)
 	{
 		if ((size > 0) && (size <= MAXNAMESIZE))
 		{
@@ -31,20 +31,20 @@ size_t size)
 			answerstring = malloc(MAXANSWERSIZE);
 			if (!answerstring)
 				return MHD_NO;
-			
-/************************/
+
+			/***********************
 			int value_int;
 			char *value_string;
 			cJSON *json;
-			json=cJSON_Parse(data);
-			value_int=cJSON_GetObjectItem(json,"instances")->valueint;
-			value_string=cJSON_GetObjectItem(json,"profile")->valuestring;
-
+			json = cJSON_Parse(key);
+			value_int = cJSON_GetObjectItem(json, "instances")->valueint;
+			value_string = cJSON_GetObjectItem(json, "profile")->valuestring;
+			*/
 			const char *greetingpage =
-				"Welcome, %s,%s,%d,%s!\n";
-				//"Welcome, %s,%s!\n";
+				"Welcome, %s,%s!\n";
+			//"Welcome, %s,%s!\n";
 
-			snprintf(answerstring, MAXANSWERSIZE, greetingpage, key, data, value_int, value_string);
+			snprintf(answerstring, MAXANSWERSIZE, greetingpage, key, data);
 			//snprintf(answerstring, MAXANSWERSIZE, greetingpage, key, data);
 			con_info->answerstring = answerstring;
 		}
@@ -58,138 +58,130 @@ size_t size)
 }
 
 static ssize_t
-file_reader (void *cls, uint64_t pos, char *buf, size_t max)
+file_reader(void *cls, uint64_t pos, char *buf, size_t max)
 {
-  FILE *file = cls;
+	FILE *file = cls;
 
-  (void)  fseek (file, pos, SEEK_SET);
-  return fread (buf, 1, max, file);
+	(void)fseek(file, pos, SEEK_SET);
+	return fread(buf, 1, max, file);
 }
 
 static void
-free_callback (void *cls)
+free_callback(void *cls)
 {
-  FILE *file = cls;
-  fclose (file);
+	FILE *file = cls;
+	fclose(file);
 }
 
 static int
-ahc_echo (void *cls,
-          struct MHD_Connection *connection,
-          const char *url,
-          const char *method,
-          const char *version,
-          const char *upload_data,
-	  size_t *upload_data_size, void **ptr)
+ahc_echo(void *cls,
+struct MHD_Connection *connection,
+	const char *url,
+	const char *method,
+	const char *version,
+	const char *upload_data,
+	size_t *upload_data_size, void **ptr)
 {
 
-  static int aptr;
-  struct MHD_Response *response;
-  int ret;
-  FILE *file;
-  struct stat buf;
+	static int aptr;
+	struct MHD_Response *response;
+	int ret;
+	FILE *file;
+	struct stat buf;
 
-  if (NULL == *ptr)
-  {
-	  struct connection_info_struct *con_info;
+	if (0 == strcmp(method, MHD_HTTP_METHOD_GET))
+	{
+		if (0 == stat(&url[1], &buf))
+			file = fopen(&url[1], "rb");
+		else
+			file = NULL;
+		if (file == NULL)
+		{
+			response = MHD_create_response_from_buffer(strlen(PAGE),
+				(void *)PAGE,
+				MHD_RESPMEM_PERSISTENT);
+			ret = MHD_queue_response(connection, MHD_HTTP_NOT_FOUND, response);
+			MHD_destroy_response(response);
+		}
+		else
+		{
+			response = MHD_create_response_from_callback(buf.st_size, 32 * 1024,     /* 32k page size */
+				&file_reader,
+				file,
+				&free_callback);
+			if (response == NULL)
+			{
+				fclose(file);
+				return MHD_NO;
+			}
+			ret = MHD_queue_response(connection, MHD_HTTP_OK, response);
+			MHD_destroy_response(response);
+		}
+		return ret;
+	}
 
-	  con_info = malloc(sizeof (struct connection_info_struct));
-	  if (NULL == con_info)
-		  return MHD_NO;
-	  con_info->answerstring = NULL;
+	if (0 == strcmp(method, "POST"))
+	{
+		ConnectionData* connection_data = NULL;
 
-	  if (0 == strcmp(method, "POST"))
-	  {
-		  con_info->postprocessor =
-			  MHD_create_post_processor(connection, POSTBUFFERSIZE,
-			  iterate_post, (void *)con_info);
+		connection_data = static_cast<ConnectionData*>(*con_cls);
+		if (NULL == connection_data)
+		{
+			connection_data = new ConnectionData();
+			connection_data->is_parsing = false;
+			*con_cls = connection_data;
+		}
 
-		  if (NULL == con_info->postprocessor)
-		  {
-			  free(con_info);
-			  return MHD_NO;
-		  }
+		if (!connection_data->is_parsing)
+		{
+			// First this method gets called with *upload_data_size == 0
+			// just to let us know that we need to start receiving POST data
+			connection_data->is_parsing = true;
+			return MHD_YES;
+		}
+		else
+		{
+			if (*upload_data_size != 0)
+			{
+				// Receive the post data and write them into the bufffer
+				connection_data->read_post_data << string(upload_data, *upload_data_size);
+				*upload_data_size = 0;
+				return MHD_YES;
+			}
+			else
+			{
+				// *upload_data_size == 0 so all data have been received
+				output = "Received data:\n\n";
+				output += connection_data->read_post_data.str();
+				output += "\n";
+				delete connection_data;
+				connection_data = NULL;
+				*con_cls = NULL;
+			}
+		}
 
-		  con_info->connectiontype = POST;
-	  }
-	  else
-		  con_info->connectiontype = GET;
+		const char* output_const = output.c_str();
 
-	  *ptr = (void *)con_info;
+		struct MHD_Response *response = MHD_create_response_from_buffer(
+			strlen(output_const), (void*)output_const, MHD_RESPMEM_MUST_COPY);
 
-	  return MHD_YES;
-  }
+		MHD_add_response_header(response, MHD_HTTP_HEADER_CONTENT_TYPE, content_type.c_str());
 
-  if (0 == strcmp(method, MHD_HTTP_METHOD_GET))
-  {
-	  if (0 == stat(&url[1], &buf))
-		  file = fopen(&url[1], "rb");
-	  else
-		  file = NULL;
-	  if (file == NULL)
-	  {
-		  response = MHD_create_response_from_buffer(strlen(PAGE),
-			  (void *)PAGE,
-			  MHD_RESPMEM_PERSISTENT);
-		  ret = MHD_queue_response(connection, MHD_HTTP_NOT_FOUND, response);
-		  MHD_destroy_response(response);
-	  }
-	  else
-	  {
-		  response = MHD_create_response_from_callback(buf.st_size, 32 * 1024,     /* 32k page size */
-			  &file_reader,
-			  file,
-			  &free_callback);
-		  if (response == NULL)
-		  {
-			  fclose(file);
-			  return MHD_NO;
-		  }
-		  ret = MHD_queue_response(connection, MHD_HTTP_OK, response);
-		  MHD_destroy_response(response);
-	  }
-	  return ret;
-  }
-  
-  if (0 == strcmp(method, "POST"))
-  {
-	  struct connection_info_struct *con_info = *ptr;
+		int ret = MHD_queue_response(connection, http_code, response);
 
-	  if (*upload_data_size != 0)
-	  {
-		  MHD_post_process(con_info->postprocessor, upload_data,
-			  *upload_data_size);
-		  *upload_data_size = 0;
+		MHD_destroy_response(response);
 
-		  return MHD_YES;
-	  }
-	  else if (NULL != con_info->answerstring)
-	  {
-		  int ret;
-		  struct MHD_Response *response;
+		return ret;
 
-
-		  response =
-			  MHD_create_response_from_buffer(strlen(con_info->answerstring), (void *)(con_info->answerstring),
-			  MHD_RESPMEM_PERSISTENT);
-		  if (!response)
-			  return MHD_NO;
-
-		  ret = MHD_queue_response(connection, MHD_HTTP_OK, response);
-		  MHD_destroy_response(response);
-
-		  return ret;
-	  }
-	
-  }
+	}
 }
 
 int fileserver(int port)
 {
-  struct MHD_Daemon *d;
+	struct MHD_Daemon *d;
 
-  d = MHD_start_daemon (MHD_USE_THREAD_PER_CONNECTION | MHD_USE_DEBUG,
-                        port,
-                        NULL, NULL, &ahc_echo, PAGE, MHD_OPTION_END);
-  while(1);
+	d = MHD_start_daemon(MHD_USE_THREAD_PER_CONNECTION | MHD_USE_DEBUG,
+		port,
+		NULL, NULL, &ahc_echo, PAGE, MHD_OPTION_END);
+	while (1);
 }

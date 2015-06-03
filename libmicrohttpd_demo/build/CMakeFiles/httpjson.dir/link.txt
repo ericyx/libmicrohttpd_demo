@@ -1,0 +1,1 @@
+/usr/bin/c++   -std=c++11    CMakeFiles/httpjson.dir/httpjson.cpp.o  -o httpjson -rdynamic /usr/local/lib/libmicrohttpd.so -Wl,-rpath,/usr/local/lib 

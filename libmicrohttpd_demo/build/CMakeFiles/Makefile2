@@ -56,38 +56,38 @@ CMAKE_SOURCE_DIR = /root/gitfile/libmicrohttpd_demo/libmicrohttpd_demo
 CMAKE_BINARY_DIR = /root/gitfile/libmicrohttpd_demo/libmicrohttpd_demo/build
 
 #=============================================================================
-# Target rules for target CMakeFiles/fileserver_example.dir
+# Target rules for target CMakeFiles/httpjson.dir
 
 # All Build rule for target.
-CMakeFiles/fileserver_example.dir/all:
-	$(MAKE) -f CMakeFiles/fileserver_example.dir/build.make CMakeFiles/fileserver_example.dir/depend
-	$(MAKE) -f CMakeFiles/fileserver_example.dir/build.make CMakeFiles/fileserver_example.dir/build
+CMakeFiles/httpjson.dir/all:
+	$(MAKE) -f CMakeFiles/httpjson.dir/build.make CMakeFiles/httpjson.dir/depend
+	$(MAKE) -f CMakeFiles/httpjson.dir/build.make CMakeFiles/httpjson.dir/build
 	$(CMAKE_COMMAND) -E cmake_progress_report /root/gitfile/libmicrohttpd_demo/libmicrohttpd_demo/build/CMakeFiles  1
-	@echo "Built target fileserver_example"
-.PHONY : CMakeFiles/fileserver_example.dir/all
+	@echo "Built target httpjson"
+.PHONY : CMakeFiles/httpjson.dir/all
 
 # Include target in all.
-all: CMakeFiles/fileserver_example.dir/all
+all: CMakeFiles/httpjson.dir/all
 .PHONY : all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/fileserver_example.dir/rule: cmake_check_build_system
+CMakeFiles/httpjson.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /root/gitfile/libmicrohttpd_demo/libmicrohttpd_demo/build/CMakeFiles 1
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/fileserver_example.dir/all
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/httpjson.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /root/gitfile/libmicrohttpd_demo/libmicrohttpd_demo/build/CMakeFiles 0
-.PHONY : CMakeFiles/fileserver_example.dir/rule
+.PHONY : CMakeFiles/httpjson.dir/rule
 
 # Convenience name for target.
-fileserver_example: CMakeFiles/fileserver_example.dir/rule
-.PHONY : fileserver_example
+httpjson: CMakeFiles/httpjson.dir/rule
+.PHONY : httpjson
 
 # clean rule for target.
-CMakeFiles/fileserver_example.dir/clean:
-	$(MAKE) -f CMakeFiles/fileserver_example.dir/build.make CMakeFiles/fileserver_example.dir/clean
-.PHONY : CMakeFiles/fileserver_example.dir/clean
+CMakeFiles/httpjson.dir/clean:
+	$(MAKE) -f CMakeFiles/httpjson.dir/build.make CMakeFiles/httpjson.dir/clean
+.PHONY : CMakeFiles/httpjson.dir/clean
 
 # clean rule for target.
-clean: CMakeFiles/fileserver_example.dir/clean
+clean: CMakeFiles/httpjson.dir/clean
 .PHONY : clean
 
 #=============================================================================

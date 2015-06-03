@@ -1,1 +1,0 @@
-/usr/bin/cc  -fPIC    -shared -Wl,-soname,libfileserver_example.so -o libfileserver_example.so CMakeFiles/fileserver_example.dir/fileserver_example.c.o /usr/local/lib/libmicrohttpd.so /usr/local/lib/libcJSON.so -Wl,-rpath,/usr/local/lib 

@@ -6,7 +6,4 @@ include_directories(/usr/local/include)
 
 add_library(fileserver_example SHARED fileserver_example.c)
 
-target_link_libraries(fileserver_example /usr/local/lib/libmicrohttpd.so /usr/local/lib/libcJSON.so)
-
-INSTALL(TARGETS fileserver_example
-    LIBRARY DESTINATION lib)
+target_link_libraries(fileserver_example /usr/local/lib/libmicrohttpd.so)

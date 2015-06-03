@@ -116,7 +116,7 @@ CMAKE_OBJCOPY:FILEPATH=/usr/bin/objcopy
 CMAKE_OBJDUMP:FILEPATH=/usr/bin/objdump
 
 //Value Computed by CMake
-CMAKE_PROJECT_NAME:STATIC=libmicrohttpd_demo
+CMAKE_PROJECT_NAME:STATIC=httpjson
 
 //Path to a program.
 CMAKE_RANLIB:FILEPATH=/usr/bin/ranlib
@@ -155,14 +155,11 @@ CMAKE_USE_RELATIVE_PATHS:BOOL=OFF
 // Studio IDE projects all commands are done without /nologo.
 CMAKE_VERBOSE_MAKEFILE:BOOL=FALSE
 
-//Dependencies for the target
-fileserver_example_LIB_DEPENDS:STATIC=general;/usr/local/lib/libmicrohttpd.so;general;/usr/local/lib/libcJSON.so;
+//Value Computed by CMake
+httpjson_BINARY_DIR:STATIC=/root/gitfile/libmicrohttpd_demo/libmicrohttpd_demo/build
 
 //Value Computed by CMake
-libmicrohttpd_demo_BINARY_DIR:STATIC=/root/gitfile/libmicrohttpd_demo/libmicrohttpd_demo/build
-
-//Value Computed by CMake
-libmicrohttpd_demo_SOURCE_DIR:STATIC=/root/gitfile/libmicrohttpd_demo/libmicrohttpd_demo
+httpjson_SOURCE_DIR:STATIC=/root/gitfile/libmicrohttpd_demo/libmicrohttpd_demo
 
 
 ########################

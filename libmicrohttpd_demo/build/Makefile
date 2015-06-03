@@ -102,41 +102,41 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named fileserver_example
+# Target rules for targets named httpjson
 
 # Build rule for target.
-fileserver_example: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 fileserver_example
-.PHONY : fileserver_example
+httpjson: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 httpjson
+.PHONY : httpjson
 
 # fast build rule for target.
-fileserver_example/fast:
-	$(MAKE) -f CMakeFiles/fileserver_example.dir/build.make CMakeFiles/fileserver_example.dir/build
-.PHONY : fileserver_example/fast
+httpjson/fast:
+	$(MAKE) -f CMakeFiles/httpjson.dir/build.make CMakeFiles/httpjson.dir/build
+.PHONY : httpjson/fast
 
-fileserver_example.o: fileserver_example.c.o
-.PHONY : fileserver_example.o
+httpjson.o: httpjson.cpp.o
+.PHONY : httpjson.o
 
 # target to build an object file
-fileserver_example.c.o:
-	$(MAKE) -f CMakeFiles/fileserver_example.dir/build.make CMakeFiles/fileserver_example.dir/fileserver_example.c.o
-.PHONY : fileserver_example.c.o
+httpjson.cpp.o:
+	$(MAKE) -f CMakeFiles/httpjson.dir/build.make CMakeFiles/httpjson.dir/httpjson.cpp.o
+.PHONY : httpjson.cpp.o
 
-fileserver_example.i: fileserver_example.c.i
-.PHONY : fileserver_example.i
+httpjson.i: httpjson.cpp.i
+.PHONY : httpjson.i
 
 # target to preprocess a source file
-fileserver_example.c.i:
-	$(MAKE) -f CMakeFiles/fileserver_example.dir/build.make CMakeFiles/fileserver_example.dir/fileserver_example.c.i
-.PHONY : fileserver_example.c.i
+httpjson.cpp.i:
+	$(MAKE) -f CMakeFiles/httpjson.dir/build.make CMakeFiles/httpjson.dir/httpjson.cpp.i
+.PHONY : httpjson.cpp.i
 
-fileserver_example.s: fileserver_example.c.s
-.PHONY : fileserver_example.s
+httpjson.s: httpjson.cpp.s
+.PHONY : httpjson.s
 
 # target to generate assembly for a file
-fileserver_example.c.s:
-	$(MAKE) -f CMakeFiles/fileserver_example.dir/build.make CMakeFiles/fileserver_example.dir/fileserver_example.c.s
-.PHONY : fileserver_example.c.s
+httpjson.cpp.s:
+	$(MAKE) -f CMakeFiles/httpjson.dir/build.make CMakeFiles/httpjson.dir/httpjson.cpp.s
+.PHONY : httpjson.cpp.s
 
 # Help Target
 help:
@@ -145,11 +145,11 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... edit_cache"
-	@echo "... fileserver_example"
+	@echo "... httpjson"
 	@echo "... rebuild_cache"
-	@echo "... fileserver_example.o"
-	@echo "... fileserver_example.i"
-	@echo "... fileserver_example.s"
+	@echo "... httpjson.o"
+	@echo "... httpjson.i"
+	@echo "... httpjson.s"
 .PHONY : help
 
 

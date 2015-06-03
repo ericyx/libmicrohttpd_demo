@@ -6,23 +6,33 @@
 
 #IncludeRegexTransform: 
 
-/root/gitfile/libmicrohttpd_demo/libmicrohttpd_demo/fileserver_example.c
-fileserver_example.h
-/root/gitfile/libmicrohttpd_demo/libmicrohttpd_demo/fileserver_example.h
-cJSON.h
+/root/gitfile/libmicrohttpd_demo/libmicrohttpd_demo/httpjson.cpp
+string
 -
-
-/root/gitfile/libmicrohttpd_demo/libmicrohttpd_demo/fileserver_example.h
+vector
+-
+string
+-
+sstream
+-
+iostream
+-
+cstring
+-
+rapidjson/document.h
+-
+rapidjson/writer.h
+-
+rapidjson/stringbuffer.h
+-
+microhttpd.h
+-
 platform.h
 -
 unistd.h
 -
-microhttpd.h
--
 
 /usr/local/include/MHD_config.h
-
-/usr/local/include/cJSON.h
 
 /usr/local/include/microhttpd.h
 stdarg.h

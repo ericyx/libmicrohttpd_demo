@@ -1,9 +1,12 @@
 cmake_minimum_required(VERSION 2.8)
-PROJECT(libmicrohttpd_demo)
+PROJECT(httpjson)
+
+SET(CMAKE_CXX_FLAGS "-std=c++11")
 
 include_directories(/usr/include)
 include_directories(/usr/local/include)
 
-add_library(fileserver_example SHARED fileserver_example.c)
+add_executable(httpjson httpjson.cpp)
 
-target_link_libraries(fileserver_example /usr/local/lib/libmicrohttpd.so /usr/local/lib/libcJSON.so)
+target_link_libraries(httpjson /usr/local/lib/libmicrohttpd.so)
+
